@@ -1,10 +1,10 @@
-## Selenium Cucumber Spring example
-Basic test automation project. Based on Cucumber, Selenium and Spring
+## Selenium JUnit Spring example
+Basic test automation project. Based on Selenium + JUnit and Spring
 
 ### Installation
 Clone. Build using Maven.
 
-`mvn test` for default profile (with Firefox Driver)
+`mvn clean test` for default profile (with Firefox Driver)
 
 `mvm test -P chrome` for Chrome profile (Chrome Driver)
 
