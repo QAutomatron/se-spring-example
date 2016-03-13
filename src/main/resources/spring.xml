@@ -10,7 +10,7 @@
     <context:component-scan base-package="site"/>
 
     <import resource="classpath*:/applicationContext.xml"/>
-    <!--<bean id="driver" class="webdriver.SharedDriver" destroy-method="quit"/>-->
+    <bean id="driver" class="webdriver.SharedDriver" destroy-method="quit"/>
     <!--<bean id="driver" class="org.openqa.selenium.firefox.FirefoxDriver" destroy-method="quit"/>-->
-    <bean id="driver" class="org.openqa.selenium.chrome.ChromeDriver" destroy-method="quit"/>
+    <!--<bean id="driver" class="org.openqa.selenium.chrome.ChromeDriver" destroy-method="quit"/>-->
 </beans>

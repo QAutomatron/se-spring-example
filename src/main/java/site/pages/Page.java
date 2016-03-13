@@ -23,8 +23,7 @@ import javax.annotation.PostConstruct;
 public abstract class Page {
 
     @Autowired
-//    private SharedDriver driver;
-    private WebDriver driver;
+    private SharedDriver driver;
 
     private Wait<WebDriver> wait;
     private final String baseUrl = PropertyLoader.loadProperty("base.url");

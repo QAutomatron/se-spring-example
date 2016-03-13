@@ -107,5 +107,4 @@ public class MakeCredit_Test {
             e.printStackTrace();
         }
     }
-
 }
