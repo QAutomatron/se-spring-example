@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Component;
-import site.data.CalculatorFormFieldData;
+import site.data.CalculatorFormSliderData;
 import site.data.RegistrationErrorData;
 import site.data.RegistrationFieldData;
 
@@ -37,7 +37,7 @@ public class RegistrationPage extends Page{
      * Click Submit button
      */
     public void clickSubmitButton() {
-        getWebDriver().findElement(By.xpath(submitButtonLocator)).click();
+        $(By.xpath(submitButtonLocator)).click();
     }
 
     /**
@@ -57,7 +57,7 @@ public class RegistrationPage extends Page{
      */
     public void setField(RegistrationFieldData fieldData, String s) {
         String locator = String.format(fieldLocator, fieldData.getId());
-        typeInto(getWebDriver().findElement(By.xpath(locator)), s);
+        typeInto($(By.xpath(locator)), s);
     }
 
     /**
@@ -72,9 +72,9 @@ public class RegistrationPage extends Page{
      * @param fieldData field
      * @return value
      */
-    public String getCreditInfoValue(CalculatorFormFieldData fieldData) {
+    public String getCreditInfoValue(CalculatorFormSliderData fieldData) {
         String locator = String.format(creditInfoFieldLocator, fieldData.name().toLowerCase());
-        return getWebDriver().findElement(By.xpath(locator)).getText().split(" ")[0];
+        return $(By.xpath(locator)).getText().split(" ")[0];
     }
 }
 

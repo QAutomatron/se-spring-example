@@ -1,5 +1,8 @@
 package site.data;
 
+/**
+ * Data for Errors on Registration Page
+ */
 public enum RegistrationErrorData {
 
     PersonalIdBlank("error_personal_id_blank"),

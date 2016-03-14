@@ -3,7 +3,6 @@ package site.steps;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import site.data.CalculatorFormFieldData;
 import site.data.CalculatorFormSliderData;
 import site.data.SliderDirectionData;
 import site.elements.CalculatorPopupElement;
@@ -44,6 +43,7 @@ public class CalculatorPopupSteps {
      * Click Submit Button
      */
     public void clickSubmitButton() {
+        LOGGER.info("Step start: Click Submit button");
         calculatorPopupElement.clickSubmitButton();
     }
 
@@ -52,7 +52,8 @@ public class CalculatorPopupSteps {
      * @param calculatorFormFieldData field
      * @param s value
      */
-    public void setField(CalculatorFormFieldData calculatorFormFieldData, String s) {
+    public void setField(CalculatorFormSliderData calculatorFormFieldData, String s) {
+        LOGGER.info(String.format("Step start: Set field <%s> to value <%s>", calculatorFormFieldData.name(), s));
         calculatorPopupElement.setField(calculatorFormFieldData, s);
     }
 
@@ -61,7 +62,8 @@ public class CalculatorPopupSteps {
      * @param fieldData field
      * @param s value
      */
-    public void fieldShouldBeSameAs(CalculatorFormFieldData fieldData, String s) {
+    public void fieldShouldBeSameAs(CalculatorFormSliderData fieldData, String s) {
+        LOGGER.info(String.format("Step start: Field <%s> should be same as <%s>", fieldData.name(), s));
         assertEquals(String.format("Wrong <%s> Field value", fieldData.name()),
                 s,
                 calculatorPopupElement.getFieldValue(fieldData));
@@ -73,6 +75,7 @@ public class CalculatorPopupSteps {
      * @param s value
      */
     public void sliderValueShouldBeSameAs(CalculatorFormSliderData formSliderData, String s) {
+        LOGGER.info(String.format("Step start: Field <%s> should be same as <%s>", formSliderData.name(), s));
         assertTrue(String.format("Slider <%s> should have value <%s>", formSliderData.name(), s),
                 calculatorPopupElement.isSliderWithValuePresent(formSliderData, s));
     }
@@ -82,7 +85,8 @@ public class CalculatorPopupSteps {
      * @param formFieldData field slider
      * @param sliderDirectionData direction plus or minus
      */
-    public void clickSliderButton(CalculatorFormFieldData formFieldData, SliderDirectionData sliderDirectionData) {
+    public void clickSliderButton(CalculatorFormSliderData formFieldData, SliderDirectionData sliderDirectionData) {
+        LOGGER.info(String.format("Step start: Click slider <%s> button <%s>", formFieldData.name(), sliderDirectionData.name()));
         calculatorPopupElement.clickSliderButton(formFieldData, sliderDirectionData);
     }
 }

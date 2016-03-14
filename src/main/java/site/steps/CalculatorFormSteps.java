@@ -3,7 +3,6 @@ package site.steps;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import site.data.CalculatorFormFieldData;
 import site.data.CalculatorFormSliderData;
 import site.elements.CalculatorFormElement;
 
@@ -31,18 +30,10 @@ public class CalculatorFormSteps {
     }
 
     /**
-     * Move slider left or right
-     * @param sliderData slider
-     * @param i amount
-     */
-    public void moveSlider(CalculatorFormSliderData sliderData, int i) {
-        calculatorFormElement.moveSlider(sliderData, i);
-    }
-
-    /**
      * Click Submit Button
      */
     public void clickSubmitButton() {
+        LOGGER.info("Step start: Click Submit Button");
         calculatorFormElement.clickSubmitButton();
     }
 
@@ -51,9 +42,20 @@ public class CalculatorFormSteps {
      * @param fieldData field
      * @param s expected value
      */
-    public void fieldShouldBeSameAs(CalculatorFormFieldData fieldData, String s) {
+    public void fieldShouldBeSameAs(CalculatorFormSliderData fieldData, String s) {
+        LOGGER.info(String.format("Step start: field <%s> should be same as <%s>", fieldData.name(), s));
         assertEquals(String.format("Wrong <%s> Field value", fieldData.name()),
                 s,
                 calculatorFormElement.getFieldValue(fieldData));
+    }
+
+    /**
+     * Set slider value by drag and drop slider
+     * @param calculatorFormSliderData slider
+     * @param i value
+     */
+    public void setSlider(CalculatorFormSliderData calculatorFormSliderData, int i) {
+        LOGGER.info(String.format("Step start: Set <%s> slider to value <%d>", calculatorFormSliderData.name(), i));
+        calculatorFormElement.setSlider(calculatorFormSliderData, i);
     }
 }

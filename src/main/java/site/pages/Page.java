@@ -30,6 +30,8 @@ public abstract class Page {
 
     @PostConstruct
     public void init() {
+        driver.manage().window().maximize();
+
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, 10, 500);
     }

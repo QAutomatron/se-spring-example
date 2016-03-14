@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import site.pages.MainPage;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -19,11 +18,17 @@ public class MainPageSteps {
     @Autowired
     private MainPage mainPage;
 
+    /**
+     * Open Main Page
+     */
     public void open() {
         LOGGER.info("Step start: Open main page");
         mainPage.open();
     }
 
+    /**
+     * Main Page Should Be Opened
+     */
     public void pageShouldBeOpened() {
         LOGGER.info("Step start: Main Page Should Be Opened");
         assertTrue("Main Page should be opened",
