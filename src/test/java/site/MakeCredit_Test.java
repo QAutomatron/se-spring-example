@@ -5,10 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import site.data.CalculatorFormSliderData;
-import site.data.RegistrationErrorData;
-import site.data.RegistrationFieldData;
-import site.data.SliderDirectionData;
+import site.data.*;
 import site.steps.CalculatorFormSteps;
 import site.steps.CalculatorPopupSteps;
 import site.steps.MainPageSteps;
@@ -35,6 +32,17 @@ public class MakeCredit_Test {
 
         // 2. Test checks if all main blocks are present on page
         mainPageSteps.pageShouldBeOpened();
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.Header);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.Logo);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.Language);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.LoginField);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.PasswordField);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.LogInButton);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.MainMenu);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.SidebarHome);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.SidebarHomeNew);
+        mainPageSteps.blockShouldBePresent(MainPageBlockData.Footer);
+
         calculatorFormSteps.formShouldBePresent();
 
         // 3. Using sliders in calculator selects non-default values

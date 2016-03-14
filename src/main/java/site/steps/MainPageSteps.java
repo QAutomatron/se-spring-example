@@ -3,6 +3,7 @@ package site.steps;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import site.data.MainPageBlockData;
 import site.pages.MainPage;
 
 import static org.junit.Assert.assertTrue;
@@ -33,5 +34,16 @@ public class MainPageSteps {
         LOGGER.info("Step start: Main Page Should Be Opened");
         assertTrue("Main Page should be opened",
                 mainPage.isPageOpened());
+    }
+
+    /**
+     * Check if block is present on the Main Page
+     * @param mainPageBlockData block
+     */
+    public void blockShouldBePresent(MainPageBlockData mainPageBlockData) {
+        LOGGER.info(String.format("Step start: Block <%s> should be present", mainPageBlockData.name()));
+        assertTrue(String.format("Block <%s> should be present on the Main Page", mainPageBlockData.name()),
+                mainPage.isBlockPresent(mainPageBlockData));
+
     }
 }
