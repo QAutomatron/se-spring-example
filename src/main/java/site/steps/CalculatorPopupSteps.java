@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import site.data.CalculatorFormFieldData;
 import site.data.CalculatorFormSliderData;
+import site.data.SliderDirectionData;
 import site.elements.CalculatorPopupElement;
 
 import static org.junit.Assert.assertEquals;
@@ -74,5 +75,14 @@ public class CalculatorPopupSteps {
     public void sliderValueShouldBeSameAs(CalculatorFormSliderData formSliderData, String s) {
         assertTrue(String.format("Slider <%s> should have value <%s>", formSliderData.name(), s),
                 calculatorPopupElement.isSliderWithValuePresent(formSliderData, s));
+    }
+
+    /**
+     * Click plus button for slider
+     * @param formFieldData field slider
+     * @param sliderDirectionData direction plus or minus
+     */
+    public void clickSliderButton(CalculatorFormFieldData formFieldData, SliderDirectionData sliderDirectionData) {
+        calculatorPopupElement.clickSliderButton(formFieldData, sliderDirectionData);
     }
 }

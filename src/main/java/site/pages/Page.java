@@ -132,4 +132,11 @@ public abstract class Page {
     protected String getValue(WebElement element) {
         return element.getAttribute("value");
     }
+
+    /**
+     * Get WebElement
+     */
+    protected WebElement $ (By by) {
+        return getWebDriver().findElement(by);
+    }
 }

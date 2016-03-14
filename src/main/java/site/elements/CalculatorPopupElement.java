@@ -5,6 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.springframework.stereotype.Component;
 import site.data.CalculatorFormFieldData;
 import site.data.CalculatorFormSliderData;
+import site.data.SliderDirectionData;
 import site.pages.Page;
 
 /**
@@ -19,6 +20,7 @@ public class CalculatorPopupElement extends Page{
     private final String inputFieldLocator = calculatorPopupLocator + "//input[@id='%s']";
     private final String submitButtonLocator = calculatorPopupLocator + "//button[contains(@class,'apply_calculator')]";
     private final String cancelButtonLocator = calculatorPopupLocator + "//button[contains(@class,'btn-default')]";
+    private final String sliderButtonLocator = calculatorPopupLocator + "//*[@data-type='change' and @data-slider='%s'][contains(@class,'%s')]";
 
     /**
      * Check if Calculator Popup present
@@ -82,6 +84,16 @@ public class CalculatorPopupElement extends Page{
     public boolean isSliderWithValuePresent(CalculatorFormSliderData formSliderData, String s) {
         String locator = String.format(sliderWithValueLocator, s, formSliderData.getSelector());
         return waitForElementPresent(By.xpath(locator));
+    }
+
+    /**
+     * Click for slider button
+     * @param formFieldData slider
+     * @param direction plus or minus
+     */
+    public void clickSliderButton(CalculatorFormFieldData formFieldData, SliderDirectionData direction) {
+        String locator = String.format(sliderButtonLocator, formFieldData.name().toLowerCase(), direction.name().toLowerCase());
+        $(By.xpath(locator)).click();
     }
 }
 

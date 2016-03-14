@@ -7,11 +7,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import site.data.CalculatorFormFieldData;
 import site.data.CalculatorFormSliderData;
+import site.data.SliderDirectionData;
 import site.steps.CalculatorFormSteps;
 import site.steps.CalculatorPopupSteps;
 import site.steps.MainPageSteps;
 import site.steps.RegistrationPageSteps;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml" })
@@ -37,8 +37,16 @@ public class MakeCredit_Test {
         calculatorFormSteps.formShouldBePresent();
 
         // 3. Using sliders in calculator selects non-default values
-        calculatorFormSteps.moveSlider(CalculatorFormSliderData.Amount, -18); // TODO доделать
-        calculatorFormSteps.moveSlider(CalculatorFormSliderData.Term, -18); // TODO доделать
+//        calculatorFormSteps.moveSlider(CalculatorFormSliderData.Amount, -6); // TODO доделать
+        calculatorFormSteps.fieldShouldBeSameAs(CalculatorFormFieldData.Amount, "300");
+        calculatorFormSteps.moveSlider(CalculatorFormSliderData.Term, -40); // TODO доделать
+        calculatorFormSteps.fieldShouldBeSameAs(CalculatorFormFieldData.Term, "29");
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // 4. User clicks button to take a loan
         calculatorFormSteps.clickSubmitButton();
@@ -72,39 +80,22 @@ public class MakeCredit_Test {
 //        registrationPageSteps.errorShouldBePresent(RegistrationErrorData.AgreementAccepted);
 
         // 9. User change amount and term of loan from registration page
-//        registrationPageSteps.clickEditButton();
+        registrationPageSteps.clickEditButton();
         calculatorPopupSteps.popupShouldBePresent();
-        calculatorPopupSteps.setField(CalculatorFormFieldData.Amount, "50");
-        calculatorPopupSteps.sliderValueShouldBeSameAs(CalculatorFormSliderData.Amount, "50");
-        calculatorPopupSteps.setField(CalculatorFormFieldData.Term, "19");
-        calculatorPopupSteps.sliderValueShouldBeSameAs(CalculatorFormSliderData.Term, "19");
-        calculatorPopupSteps.fieldShouldBeSameAs(CalculatorFormFieldData.Amount, "50");
-        calculatorPopupSteps.fieldShouldBeSameAs(CalculatorFormFieldData.Term, "19");
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        calculatorPopupSteps.fieldShouldBeSameAs(CalculatorFormFieldData.Amount, "295");
+        calculatorPopupSteps.clickSliderButton(CalculatorFormFieldData.Amount, SliderDirectionData.Minus);
+        calculatorPopupSteps.fieldShouldBeSameAs(CalculatorFormFieldData.Amount, "290");
+
+        calculatorPopupSteps.fieldShouldBeSameAs(CalculatorFormFieldData.Term, "29");
+        calculatorPopupSteps.clickSliderButton(CalculatorFormFieldData.Term, SliderDirectionData.Plus);
+        calculatorPopupSteps.fieldShouldBeSameAs(CalculatorFormFieldData.Term, "30");
 
         calculatorPopupSteps.clickSubmitButton();
         calculatorPopupSteps.popupShouldNotBePresent();
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         // 10. After closing pop-up test will check if all data changed
-        registrationPageSteps.creditInfoShouldBeSameAs(CalculatorFormFieldData.Amount, "50.00");
-        registrationPageSteps.creditInfoShouldBeSameAs(CalculatorFormFieldData.Term, "19");
-
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        registrationPageSteps.creditInfoShouldBeSameAs(CalculatorFormFieldData.Amount, "290.00");
+        registrationPageSteps.creditInfoShouldBeSameAs(CalculatorFormFieldData.Term, "30");
     }
 }

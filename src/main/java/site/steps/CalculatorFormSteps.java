@@ -3,10 +3,11 @@ package site.steps;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import site.data.CalculatorFormFieldData;
 import site.data.CalculatorFormSliderData;
 import site.elements.CalculatorFormElement;
-import site.pages.RegistrationPage;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -43,5 +44,16 @@ public class CalculatorFormSteps {
      */
     public void clickSubmitButton() {
         calculatorFormElement.clickSubmitButton();
+    }
+
+    /**
+     * Get Field value
+     * @param fieldData field
+     * @param s expected value
+     */
+    public void fieldShouldBeSameAs(CalculatorFormFieldData fieldData, String s) {
+        assertEquals(String.format("Wrong <%s> Field value", fieldData.name()),
+                s,
+                calculatorFormElement.getFieldValue(fieldData));
     }
 }
