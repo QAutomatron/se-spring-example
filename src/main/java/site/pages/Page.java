@@ -141,4 +141,16 @@ public abstract class Page {
     protected WebElement $ (By by) {
         return getWebDriver().findElement(by);
     }
+
+    /**
+     * Wait some time
+     * @param timeout time
+     */
+    protected void waitABit(Integer timeout) {
+        try {
+            Thread.sleep(timeout);
+        } catch (InterruptedException e) {
+            throw new Error(e);
+        }
+    }
 }

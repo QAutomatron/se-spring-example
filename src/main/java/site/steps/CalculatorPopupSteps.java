@@ -74,8 +74,8 @@ public class CalculatorPopupSteps {
      * @param formSliderData slider
      * @param s value
      */
-    public void sliderValueShouldBeSameAs(CalculatorFormSliderData formSliderData, String s) {
-        LOGGER.info(String.format("Step start: Field <%s> should be same as <%s>", formSliderData.name(), s));
+    public void sliderHandleValueShouldBeSameAs(CalculatorFormSliderData formSliderData, String s) {
+        LOGGER.info(String.format("Step start: Slider <%s>  handle value should be same as <%s>", formSliderData.name(), s));
         assertTrue(String.format("Slider <%s> should have value <%s>", formSliderData.name(), s),
                 calculatorPopupElement.isSliderWithValuePresent(formSliderData, s));
     }
@@ -88,5 +88,16 @@ public class CalculatorPopupSteps {
     public void clickSliderButton(CalculatorFormSliderData formFieldData, SliderDirectionData sliderDirectionData) {
         LOGGER.info(String.format("Step start: Click slider <%s> button <%s>", formFieldData.name(), sliderDirectionData.name()));
         calculatorPopupElement.clickSliderButton(formFieldData, sliderDirectionData);
+    }
+
+    /**
+     * Check if therms info link present for form
+     * @param amount amount
+     * @param term term
+     */
+    public void termsLinkShouldBePresent(String amount, String term) {
+        LOGGER.info(String.format("Step start: Term link with: amount value <%s> and term value <%s> should be present", amount, term));
+        assertTrue(String.format("Term link with: amount value <%s> and term value <%s> should be present", amount, term),
+                calculatorPopupElement.isTermLinkPresent(amount, term));
     }
 }

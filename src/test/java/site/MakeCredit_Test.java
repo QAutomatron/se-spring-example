@@ -94,12 +94,15 @@ public class MakeCredit_Test {
         calculatorPopupSteps.fieldShouldBeSameAs(CalculatorFormSliderData.Term, "29");
         calculatorPopupSteps.clickSliderButton(CalculatorFormSliderData.Term, SliderDirectionData.Plus);
         calculatorPopupSteps.fieldShouldBeSameAs(CalculatorFormSliderData.Term, "30");
+        calculatorPopupSteps.termsLinkShouldBePresent("290", "30");
 
         calculatorPopupSteps.clickSubmitButton();
         calculatorPopupSteps.popupShouldNotBePresent();
 
         // 10. After closing pop-up test will check if all data changed
-        registrationPageSteps.creditInfoShouldBeSameAs(CalculatorFormSliderData.Amount, "290.00");
-        registrationPageSteps.creditInfoShouldBeSameAs(CalculatorFormSliderData.Term, "30");
+        registrationPageSteps.creditInfoShouldBePresent(CalculatorFormSliderData.Amount, "290.00 EUR");
+        registrationPageSteps.creditInfoShouldBePresent(CalculatorFormSliderData.Term, "30 dienām");
+
+        // 11. Browser closed
     }
 }

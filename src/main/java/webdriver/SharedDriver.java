@@ -28,5 +28,4 @@ public class SharedDriver extends EventFiringWebDriver {
     public SharedDriver() {
         super(REAL_DRIVER);
     }
-
 }

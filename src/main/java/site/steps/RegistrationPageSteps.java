@@ -8,7 +8,6 @@ import site.data.RegistrationErrorData;
 import site.data.RegistrationFieldData;
 import site.pages.RegistrationPage;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -72,10 +71,9 @@ public class RegistrationPageSteps {
      * @param fieldData field
      * @param s value
      */
-    public void creditInfoShouldBeSameAs(CalculatorFormSliderData fieldData, String s) {
-        LOGGER.info(String.format("Step start: Credit info <%s> field should be same as <%s>", fieldData.name(), s));
-        assertEquals(String.format("Wrong <%s> field value", fieldData.name()),
-                s,
-                registrationPage.getCreditInfoValue(fieldData));
+    public void creditInfoShouldBePresent(CalculatorFormSliderData fieldData, String s) {
+        LOGGER.info(String.format("Step start: Credit info <%s> field should be present with value <%s>", fieldData.name(), s));
+        assertTrue(String.format("Credit info <%s> field should be same as <%s>. But was <%s>", fieldData.name(), s, registrationPage.getCreditInfoValue(fieldData)),
+                registrationPage.isCreditInfoValuePresent(fieldData, s));
     }
 }

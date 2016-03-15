@@ -23,6 +23,7 @@ public class RegistrationPage extends Page{
     private final String submitButtonLocator = workflowFormLocator + "//button[@type='submit']";
 
     private final String creditInfoFieldLocator = "//*[contains(@class,'amount-info')]//*[@id][@class='value %s']";
+    private final String creditInfoFieldTextLocator = creditInfoFieldLocator + "[text()='%s']";
     private final String editButtonLocator = "//button[@data-target='#modal-calculator']";
 
     /**
@@ -74,7 +75,18 @@ public class RegistrationPage extends Page{
      */
     public String getCreditInfoValue(CalculatorFormSliderData fieldData) {
         String locator = String.format(creditInfoFieldLocator, fieldData.name().toLowerCase());
-        return $(By.xpath(locator)).getText().split(" ")[0];
+        return $(By.xpath(locator)).getText();
+    }
+
+    /**
+     * Check if Credit Info with value present on page
+     * @param fieldData field
+     * @param s value
+     * @return boolean
+     */
+    public boolean isCreditInfoValuePresent(CalculatorFormSliderData fieldData, String s) {
+        String locator = String.format(creditInfoFieldTextLocator, fieldData.name().toLowerCase(), s);
+        return waitForElementPresent(By.xpath(locator));
     }
 }
 

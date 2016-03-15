@@ -20,6 +20,7 @@ public class CalculatorPopupElement extends Page{
     private final String submitButtonLocator = calculatorPopupLocator + "//button[contains(@class,'apply_calculator')]";
     private final String cancelButtonLocator = calculatorPopupLocator + "//button[contains(@class,'btn-default')]";
     private final String sliderButtonLocator = calculatorPopupLocator + "//*[@data-type='change' and @data-slider='%s'][contains(@class,'%s')]";
+    private final String termLinkLocator = calculatorPopupLocator + "//a[contains(@class,'terms-link')][@href='/legal-terms/info?amount=%s&term=%s']";
 
     /**
      * Check if Calculator Popup present
@@ -93,6 +94,17 @@ public class CalculatorPopupElement extends Page{
     public void clickSliderButton(CalculatorFormSliderData formFieldData, SliderDirectionData direction) {
         String locator = String.format(sliderButtonLocator, formFieldData.name().toLowerCase(), direction.name().toLowerCase());
         $(By.xpath(locator)).click();
+    }
+
+    /**
+     * Check if term link present with parameters
+     * @param amount amount
+     * @param term term
+     * @return boolean
+     */
+    public boolean isTermLinkPresent(String amount, String term) {
+        String locator = String.format(termLinkLocator, amount, term);
+        return waitForElementPresent(By.xpath(locator));
     }
 }
 
