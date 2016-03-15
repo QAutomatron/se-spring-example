@@ -1,8 +1,8 @@
-## Selenium JUnit Spring example
-Basic test automation project. Based on Selenium + JUnit and Spring
+## Homework 4Finance with Selenium JUnit Spring
+Test automation project. Based on Selenium + JUnit and Spring
 
 ### Installation
-Clone. Build using Maven.
+Build using Maven.
 
 `mvn clean test` for default profile (with Firefox Driver)
 
